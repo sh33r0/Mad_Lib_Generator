@@ -12,3 +12,14 @@ with open("story1.txt" , "r", encoding="utf-8") as f:
             words.add(word)
             word_start=-1
     print(words)
+    print("WELCOME TO MADLIB GEN")
+    dic={}
+    for word in (words):
+        if '_' in word:
+            i=word.index('_')
+            s=word[1:i]+" "+word[i+1:-1]
+        else:
+            s=word[1:-1]
+        dic[word]= input("Enter a word for "+s+": ")
+    print("HERE IS YOUR STORY")
+    print(dic)
