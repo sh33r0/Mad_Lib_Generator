@@ -1,5 +1,22 @@
-with open("story1.txt" , "r", encoding="utf-8") as f:
-    story = f.read()
+def pick_one(num):
+    with open(f"story{num}.txt" , "r", encoding="utf-8") as f:
+        stored_data = f.read()
+        return stored_data
+
+while True:
+    story_number = input("Enter story number(1-3) : ")
+    if story_number.isdigit():
+        story_number = int(story_number)
+        if 1<= story_number <= 3:
+            break
+        else:
+            print("Enter number between 1-2! ")
+    else:
+        print("Enter a valid number !")
+
+story_data = pick_one(story_number)
+
+def display(story):
     words = set()
     word_start = -1
     target_start = '<'
@@ -11,7 +28,7 @@ with open("story1.txt" , "r", encoding="utf-8") as f:
             word = story[word_start:i+1]
             words.add(word)
             word_start=-1
-    print(words)
+
     print("WELCOME TO MADLIB GEN")
     dic={}
     for word in (words):
@@ -21,5 +38,10 @@ with open("story1.txt" , "r", encoding="utf-8") as f:
         else:
             s=word[1:-1]
         dic[word]= input("Enter a word for "+s+": ")
-    print("HERE IS YOUR STORY")
-    print(dic)
+
+    for word in words:
+        story = story.replace(word , dic[word])
+    print("\nHERE IS YOUR STORY\n\n",story)
+
+display(story_data)  
+
